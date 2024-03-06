@@ -11,7 +11,7 @@ public class YINSecurityDepositPaymentGateway {
            YIN_Security_Deposit__c getSD=new YIN_Security_Deposit__c();
            LIBISObjectUnitOfWork uow=YINApplication.unitOfWork.newInstance();
            ResultPaymentLink link=new ResultPaymentLink();
-           
+            
            String recordtype=Schema.SObjectType.YIN_Security_Deposit__c.getRecordTypeInfosByName().get('Increase').getRecordTypeId();
            LIBISObjectSelector selector= YINApplication.selector.newInstance(YIN_Security_Deposit__c.sObjectType);
            YINSecurityDepositSelector selectorObj=(YINSecurityDepositSelector)selector;
