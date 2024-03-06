@@ -1,0 +1,94 @@
+<!--
+  @description       : 
+  @author            : Amol Patil/amol.patil@skinternational.com
+  @group             : 
+  @last modified on  : 05-02-2024
+  @last modified by  : Amol Patil/amol.patil@skinternational.com
+-->
+<template>
+  <template if:false={componentParamter.securityrecId}>
+    <div class="slds-box slds-theme_default" style="margin-bottom:10px; border-radius:0; border:0;">
+
+         <div class="slds-grid slds-gutters slds-align_absolute-center">          
+
+            <div class="slds-col ">
+                <span> </span>
+            </div>            
+            
+
+            <div class="slds-col slds-medium-size_6-of-12  slds-large-size_7-of-12">
+                <div class="slds-box">
+
+                  <div class="slds-section__title-action" style="background:#262626; color:#fff; font-weight:600; border-top-left-radius:4px; border-bottom-left-radius:4px; border-top-right-radius:4px; border-bottom-right-radius:4px; font-size:18px; padding:5px;">
+                    <lightning-icon label="" icon-name="utility:identity" style="color:#fff!important;"></lightning-icon>
+                    <span style="margin-left:10px; font-size: 16px; font-weight: 500;">Aadhaar Verification</span>
+                </div>
+
+                  <div class="slds-form-element" style="padding-bottom:15px; padding-top:10px;">
+                    <div class="slds-grid">
+
+                      <!-- <div class="slds-col slds-large-size_6-of-12">
+                        <div class="slds-form-element__label" style="text-align: right; width: 100%; margin-top: 0.25rem;">Enter Aadhaar Number</div>
+                      </div> -->
+
+                      <div class="slds-col slds-large-size_6-of-12" style="margin:0 auto;">
+                        <lightning-input label="Enter Aadhaar Number" type="text" value={maskedAadhar}   disabled onchange={handleChange}></lightning-input>
+                       
+                      </div>
+                    
+
+                    </div>
+                  </div>
+                
+                  <div class="slds-form-element" style="padding-bottom:15px; padding-top:10px;">
+                    <div class="slds-grid">
+
+                  
+                  <div class="slds-col slds-large-size_8-of-12"  style="margin:0 auto;">
+                      
+                        <!-- <lightning-checkbox-group 
+                              name=""
+                              label=""
+                              options={options}
+                              value={value}
+                              onchange={handleChange1}
+                              style="text-align: center;"
+                              ></lightning-checkbox-group> -->
+
+                              <lightning-input
+                              name=""
+                              label="I authorize to Verify My Aadhaar"
+                              type="checkbox"
+                              value={value}
+                              onclick={handleChange1}
+                              disabled={isDisabled}
+                              checked={isChecked}
+                              style="text-align: center;"
+                              ></lightning-input>
+                              
+                      </div>
+                    </div>
+
+                  </div>
+                              
+
+                  <div class="slds-form-element slds-p-top_small" align="center" style="margin-top: 15px; padding-top: 20px;border-top:1px solid #c9c9c9;">
+                    <lightning-button variant="destructive" label="Submit" title="Submit" onclick={handleClick} class="slds-m-left_x-small" disabled={booleandisabled}></lightning-button>
+                    <!-- <lightning-button label="Reset" title="Reset" onclick={handlereset} class="slds-m-left_x-small"></lightning-button> -->
+                  </div>
+                </div>
+            </div>
+            <div class="slds-col">
+                <span></span>
+            </div>
+        </div> 
+
+        <div if:true={showLoading} class="slds-spinner_inline spinner-padding">
+          <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass" style="position:fixed;top: 60px;"></lightning-spinner>
+        </div>
+    </div>
+</template>
+<template if:true={componentParamter.securityrecId}>   
+<c-yin-enter-otp-cmp securityrec-id={componentParamter.securityrecId} access1={componentParamter.access1}   aadhar-no={componentParamter.aadharNo} module2={componentParamter.module2} email={componentParamter.email} phone={componentParamter.phone} > </c-yin-enter-otp-cmp>
+</template>
+</template>

@@ -1,0 +1,53 @@
+<!--
+  @description       : 
+  @author            : Amol Patil/amol.patil@skinternational.com
+  @group             : 
+  @last modified on  : 25-01-2024
+  @last modified by  : Amol Patil/amol.patil@skinternational.com
+-->
+<template>
+    <div class="slds-box slds-theme_default" style="margin-bottom:10px; border-radius:0; border:0;">
+
+         <div class="slds-grid slds-gutters slds-align_absolute-center">          
+
+            <div class="slds-col ">
+                <span> </span>
+            </div>            
+            
+
+            <div class="slds-col slds-medium-size_6-of-12  slds-large-size_7-of-12">
+                <div class="slds-box">
+
+                  <div class="slds-section__title-action" style="background:#262626; color:#fff; font-weight:600; border-top-left-radius:4px; border-bottom-left-radius:4px; border-top-right-radius:4px; border-bottom-right-radius:4px; font-size:18px; padding:5px;">
+                    <lightning-icon label="" icon-name="utility:identity" style="color:#fff!important;"></lightning-icon>
+                    <span style="margin-left:10px; font-size: 16px; font-weight: 500;">Verify Aadhaar Number</span>
+                </div>
+
+                  <div class="slds-form-element" style="padding-bottom:15px; padding-top:10px;">
+                    <div class="slds-grid" style="justify-content: center;">
+                      <!-- <div class="slds-col slds-large-size_6-of-12">
+                        <div class="slds-form-element__label" style="text-align: right; width: 100%; margin-top: 0.25rem;">Enter OTP Number</div>
+                      </div> -->
+                      <div class="slds-col slds-large-size_6-of-12">
+                        <lightning-input label="Enter OTP Number" type="text" value={otpNumber} onchange={handleChange}></lightning-input>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="slds-form-element slds-p-top_small" align="center" style="margin-top: 15px; padding-top: 20px;border-top:1px solid #c9c9c9;">
+                    <lightning-button variant="destructive" label="Submit" title="Submit" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button label="Reset" title="Reset" onclick={handleReset} class="slds-m-left_x-small"></lightning-button>
+                  </div>
+                </div>
+            </div>
+            <div class="slds-col">
+                <span></span>
+            </div>
+        </div> 
+        <div if:true={showLoading} class="slds-spinner_inline spinner-padding">
+          <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass" style="position:fixed;top: 60px;"></lightning-spinner>
+        </div>
+
+    </div>
+</template>
