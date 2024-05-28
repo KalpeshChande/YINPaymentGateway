@@ -1,0 +1,93 @@
+<template>
+
+    <div class="slds-box slds-theme_default" style="margin-bottom:10px; border-radius:0; border:0;">
+
+        <div class="slds-grid slds-gutters slds-align_absolute-center">
+
+            <div class="slds-col ">
+                <span> </span>
+            </div>
+
+
+            <div class="slds-col slds-medium-size_6-of-12  slds-large-size_7-of-12">
+                <div class="slds-box">
+
+                    <div class="slds-section__title-action"
+                        style="background:#262626!important; color:#fff; font-weight:600; border-top-left-radius:4px; border-bottom-left-radius:4px; border-top-right-radius:4px; border-bottom-right-radius:4px; font-size:18px; padding:5px;">
+                        <lightning-icon label="" icon-name="utility:contract_payment"
+                            style="color:#fff!important;"></lightning-icon>
+                        <span style="margin-left:10px; font-size: 16px; font-weight: 500;">List of Open Invoice</span>
+                    </div>
+
+                    <div style="padding:5px;max-height: 15rem;" class="slds-scrollable_y">
+
+                        <table
+                            class="slds-table slds-table_bordered slds-table_resizable-cols slds-table_striped slds-no-row-hover"
+                            style="border:1px solid rgb(229, 229, 229)" role="grid" aria-label="resized column">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center; padding:5px 0">Select</th>
+                                    <th style="text-align:center;">Invoice Date</th>
+                                    <th style="text-align:center;">Invoice Number</th>
+                                    <th style="text-align:center;">Due Date</th>
+                                    <th style="text-align:right;">Remaining Amount (INR)</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <template for:each={openInvoiceLedger} for:item="invoice" for:index="index">
+                                    <tr key={invoice.Id}>
+                                        <td style="text-align:center;display: grid !important;"><input data-name="check"
+                                                data-id={invoice.Id} type="checkbox" data-itemindex={index}
+                                                disabled={invoice.disable} value={invoice.Id} name={invoice.Id}
+                                                data-index={invoice.index} onchange={handleCheck}></td>
+                                        <td style="text-align:center;">{invoice.Posting_Date__c}</td>
+                                        <td style="text-align:center;">{invoice.Document_Number__c}</td>
+                                        <td style="text-align:center;">{invoice.Due_Date__c}</td>
+                                        <td style="text-align:right;">{invoice.Remaining_Amount__c}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+
+                        </table>
+
+
+                    </div>
+
+                    <div class="slds-form-element" style="padding-bottom:15px; padding-top:10px;">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-large-size_6-of-12">
+                                <lightning-input label="Outstanding Amount (INR)" type="text" disabled="true"
+                                    value={amount}></lightning-input>
+                            </div>
+
+                            <div class="slds-col slds-large-size_6-of-12">
+                                <lightning-input label="Amount (INR)" disabled type="number"
+                                    value={payingAmount}></lightning-input>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12" style="margin-top: 10px;">
+                            <lightning-input label="Overdue Amount (INR)" disabled type="number"
+                                value={overDueAmount}></lightning-input>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element slds-p-top_small" align="center"
+                        style="margin-top: 15px; padding-top: 20px;border-top:1px solid #c9c9c9;">
+                        <div lwc:if={isLoading}>
+                            <lightning-spinner variant="base" size="small"></lightning-spinner>
+                        </div>
+                        <lightning-button lwc:else variant="destructive" label="Pay" title="Pay" onclick={handlePay}
+                            class="slds-m-left_x-small"></lightning-button>
+                        <lightning-button label="Cancel" title="Cancel" onclick={handleClick}
+                            class="slds-m-left_x-small"></lightning-button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-col">
+                <span></span>
+            </div>
+        </div>
+    </div>
+</template>
